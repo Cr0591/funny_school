@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class FunnySchoolApplication {
 
     public static void main(String[] args) {
+        //测试修改
         SpringApplication.run(FunnySchoolApplication.class, args);
     }
 
