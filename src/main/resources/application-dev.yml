@@ -7,6 +7,7 @@ server:
     min-response-size: 1024
     mime-types: application/javascript,application/json,application/xml,text/html,text/xml,text/plain,text/css,image/*
 spring:
+
   datasource:
     druid:
         stat-view-servlet:
@@ -37,3 +38,4 @@ mybatis:
   mapper-locations: classpath:edu/gpnu/mapper/xml/*Mapper.xml
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
