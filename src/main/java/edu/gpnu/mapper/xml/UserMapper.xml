@@ -9,4 +9,11 @@
         select * from user where student_id = #{studentId}
     </select>
 
+    <insert id="insert" parameterType="edu.gpnu.entity.User">
+        insert into
+        user(username,password,clase,student_id,sex,school,campus)
+        values
+        (#{username},#{password},#{clase},#{studentId},#{sex},#{school},#{campus})
+    </insert>
+
 </mapper>

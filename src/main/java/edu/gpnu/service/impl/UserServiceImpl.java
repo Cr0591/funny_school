@@ -22,4 +22,9 @@ public class UserServiceImpl implements IUserService {
     public User getUsersByStudentId(String studentId) {
         return userMapper.getUsersByStudentId(studentId);
     }
+
+    @Override
+    public int saveUser(User user) {
+        return userMapper.insert(user);
+    }
 }

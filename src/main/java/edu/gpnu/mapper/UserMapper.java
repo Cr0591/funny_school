@@ -13,4 +13,6 @@ public interface UserMapper {
     List<User> getUsersByUserame(String username);
 
     User getUsersByStudentId(String studentId);
+
+    int insert(User user);
 }
