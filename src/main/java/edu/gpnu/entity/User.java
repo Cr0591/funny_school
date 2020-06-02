@@ -93,4 +93,17 @@ public class User implements Serializable {
     public void setCampus(String campus) {
         this.campus = campus;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", clase='" + clase + '\'' +
+                ", studentId='" + studentId + '\'' +
+                ", sex='" + sex + '\'' +
+                ", school='" + school + '\'' +
+                ", campus='" + campus + '\'' +
+                '}';
+    }
 }

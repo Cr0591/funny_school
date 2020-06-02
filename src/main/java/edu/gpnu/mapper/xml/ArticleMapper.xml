@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.gpnu.mapper.ArticleMapper">
+    <resultMap id="articleVOMap" type="edu.gpnu.vo.ArticleVO">
+        <association property="article" column="id" javaType="edu.gpnu.entity.Article" columnPrefix="article_">
+            <id column="id" property="id"/>
+            <result column="content" property="content"/>
+            <result column="create_by" property="createBy"/>
+            <result column="create_time" property="createTime"/>
+        </association>
+        <collection property="articlePictureList" column="{articleId=id}" javaType="java.util.List" ofType="edu.gpnu.entity.ArticlePicture" select="edu.gpnu.mapper.ArticlePictureMapper.queryByArticleId">
+
+        </collection>
+    </resultMap>
+    <insert id="insert" parameterType="edu.gpnu.entity.User">
+        insert into
+        article
+        (id,title,content,create_by)
+        values
+        (#{id},#{title},#{content},#{createBy})
+    </insert>
+
+    <select id="queryArticleVOs" resultMap="articleVOMap">
+        select
+        id,
+        id article_id,
+        content article_content,
+        create_by article_create_by,
+        create_time article_create_time
+        from article
+    </select>
+
+</mapper>

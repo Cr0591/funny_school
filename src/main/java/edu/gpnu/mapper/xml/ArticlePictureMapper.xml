@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.gpnu.mapper.ArticlePictureMapper">
+    <insert id="insert" parameterType="edu.gpnu.entity.User">
+        insert into
+        article_picture
+        (id,article_id,picture)
+        values
+        (#{id},#{articleId},#{picture})
+    </insert>
+
+    <select id="queryByArticleId" resultType="edu.gpnu.entity.ArticlePicture">
+        select id,article_id,picture from article_picture where article_id = #{articleId}
+    </select>
+</mapper>
