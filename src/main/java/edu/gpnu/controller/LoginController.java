@@ -64,4 +64,10 @@ public class LoginController {
         }
     }
 
+    @GetMapping("/logout")
+    public Result logout(){
+        SecurityUtils.getSubject().logout();
+        return Result.ok("注销成功");
+    }
+
 }

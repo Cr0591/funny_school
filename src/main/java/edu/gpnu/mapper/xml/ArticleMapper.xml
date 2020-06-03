@@ -8,6 +8,9 @@
             <result column="create_by" property="createBy"/>
             <result column="create_time" property="createTime"/>
         </association>
+        <association property="user" column="id" javaType="edu.gpnu.entity.User" columnPrefix="user_">
+            <result column="username" property="username"/>
+        </association>
         <collection property="articlePictureList" column="{articleId=id}" javaType="java.util.List" ofType="edu.gpnu.entity.ArticlePicture" select="edu.gpnu.mapper.ArticlePictureMapper.queryByArticleId">
 
         </collection>
@@ -26,8 +29,11 @@
         id article_id,
         content article_content,
         create_by article_create_by,
-        create_time article_create_time
+        create_time article_create_time,
+        username user_username
         from article
+        left join user a
+        on create_by = a.student_id
     </select>
 
 </mapper>
