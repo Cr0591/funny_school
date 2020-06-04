@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/sys")
 public class LoginController {
     @Autowired
     private IUserService userService;
@@ -28,7 +28,7 @@ public class LoginController {
         }
         String studentId = user.getStudentId();
         String password = user.getPassword();
-        User queryUser = userService.getUsersByStudentId(studentId);
+        User queryUser = userService.getUserByStudentId(studentId);
         if (queryUser == null) {
             return Result.error(401, "学号错误");
         }

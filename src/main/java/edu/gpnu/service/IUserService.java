@@ -13,7 +13,7 @@ public interface IUserService {
      */
     List<User> getUsersByUserame(String username);
 
-    User getUsersByStudentId(String studentId);
+    User getUserByStudentId(String studentId);
 
     int saveUser(User user);
 }

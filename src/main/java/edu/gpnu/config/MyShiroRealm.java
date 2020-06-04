@@ -34,7 +34,7 @@ public class MyShiroRealm extends AuthorizingRealm {
         UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
         String studentId = token.getUsername();
         //根据登陆学号studentId从库中查询user对象
-        User user = userService.getUsersByStudentId(studentId);
+        User user = userService.getUserByStudentId(studentId);
         if(user==null){throw new AuthenticationException("用户不存在");}
 
         //进行认证，将正确数据给shiro处理

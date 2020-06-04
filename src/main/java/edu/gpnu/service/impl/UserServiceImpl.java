@@ -19,7 +19,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public User getUsersByStudentId(String studentId) {
+    public User getUserByStudentId(String studentId) {
         return userMapper.getUsersByStudentId(studentId);
     }
 
