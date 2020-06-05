@@ -18,4 +18,9 @@ public class CommentServiceImpl implements ICommentService {
     public List<Comment> queryByArticleId(String articleId) {
         return commentMapper.queryByArticleId(articleId);
     }
+
+    @Override
+    public int add(Comment comment) {
+        return commentMapper.insert(comment);
+    }
 }

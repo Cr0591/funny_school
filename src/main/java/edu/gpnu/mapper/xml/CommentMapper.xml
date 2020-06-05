@@ -3,6 +3,11 @@
 <mapper namespace="edu.gpnu.mapper.CommentMapper">
     <select id="queryByArticleId" resultType="edu.gpnu.entity.Comment">
         select * from comment where article_id = #{articleId}
-
     </select>
+
+    <insert id="insert">
+        insert into comment(id,content,article_id,create_by)
+        values (#{id},#{content},#{articleId},#{createBy})
+    </insert>
+
 </mapper>

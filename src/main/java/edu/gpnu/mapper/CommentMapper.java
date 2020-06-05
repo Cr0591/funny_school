@@ -7,4 +7,6 @@ import java.util.List;
 public interface CommentMapper {
 
     List<Comment> queryByArticleId(String articleId);
+
+    int insert(Comment comment);
 }
