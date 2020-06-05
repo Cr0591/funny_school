@@ -16,4 +16,6 @@ public interface IUserService {
     User getUserByStudentId(String studentId);
 
     int saveUser(User user);
+
+    int edit(User user);
 }

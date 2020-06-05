@@ -15,4 +15,6 @@ public interface UserMapper {
     User getUsersByStudentId(String studentId);
 
     int insert(User user);
+
+    int update(User user);
 }

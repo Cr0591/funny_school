@@ -16,6 +16,7 @@ public class ArticleController {
 
     @GetMapping("/list")
     public Result list(){
+        System.out.println("/article/list执行");
         List<ArticleVO> articleVOS = articleService.queryArticleVOs();
         return Result.ok(articleVOS);
     }

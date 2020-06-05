@@ -1,8 +1,12 @@
 package edu.gpnu.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import edu.gpnu.api.vo.Result;
+import edu.gpnu.common.CommonConstant;
 import edu.gpnu.entity.User;
 import edu.gpnu.service.IUserService;
+import edu.gpnu.util.JwtUtil;
+import edu.gpnu.util.RedisUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -14,11 +18,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/sys")
 public class LoginController {
     @Autowired
     private IUserService userService;
+
+    @Autowired
+    private RedisUtil redisUtil;
+
 
     @GetMapping("/login")
     public Result login(User user) {
@@ -35,19 +45,41 @@ public class LoginController {
         if (!queryUser.getPassword().equals(password)) {
             return Result.error(401, "密码错误");
         }
-        Subject subject = SecurityUtils.getSubject();
-        UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(studentId, password, false);
-        try {
-            subject.login(usernamePasswordToken);
-        } catch (IncorrectCredentialsException e) {
-            e.printStackTrace();
-            return Result.error("密码错误");
-        } catch (AuthenticationException e) {
-            e.printStackTrace();
-            return Result.error("登录失败");
-        }
-        return Result.ok("登录成功");
+
+        Result<JSONObject> result = new Result<>();
+
+        userInfo(user,result);
+
+        return result;
     }
+
+
+    /**
+     * 用户信息
+     *
+     * @param user
+     * @param result
+     * @return
+     */
+    private Result<JSONObject> userInfo(User user, Result<JSONObject> result) {
+        String syspassword = user.getPassword();
+        String studentId = user.getStudentId();
+
+        // 生成token
+        String token = JwtUtil.sign(studentId, syspassword);
+        // 设置token缓存有效时间
+        redisUtil.set(CommonConstant.PREFIX_USER_TOKEN + token, token);
+        redisUtil.expire(CommonConstant.PREFIX_USER_TOKEN + token, JwtUtil.EXPIRE_TIME*2 / 1000);
+
+        // 获取用户部门信息
+        JSONObject obj = new JSONObject();
+        obj.put("token",token);
+        obj.put("userInfo", user);
+        result.setResult(obj);
+        result.success("登录成功");
+        return result;
+    }
+
 
     @PostMapping("/register")
     public Result register(User user){

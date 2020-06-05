@@ -22,8 +22,6 @@ public class ImageController {
     public void view(HttpServletRequest request, HttpServletResponse response) {
         // ISO-8859-1 ==> UTF-8 进行编码转换
         String filePath = extractPathFromPattern(request);
-        System.out.println(filePath);
-        System.out.println(uploadPath);
         // 其余处理略
         InputStream inputStream = null;
         OutputStream outputStream = null;
