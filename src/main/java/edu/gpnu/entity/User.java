@@ -26,7 +26,7 @@ public class User implements Serializable {
     /**
      * 性别
      */
-    private String sex;
+    private String gender;
 
     /**
      * 学校
@@ -70,12 +70,12 @@ public class User implements Serializable {
         this.studentId = studentId;
     }
 
-    public String getSex() {
-        return sex;
+    public String getGender() {
+        return gender;
     }
 
-    public void setSex(String sex) {
-        this.sex = sex;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public String getSchool() {
@@ -101,7 +101,7 @@ public class User implements Serializable {
                 ", password='" + password + '\'' +
                 ", clase='" + clase + '\'' +
                 ", studentId='" + studentId + '\'' +
-                ", sex='" + sex + '\'' +
+                ", gender='" + gender + '\'' +
                 ", school='" + school + '\'' +
                 ", campus='" + campus + '\'' +
                 '}';

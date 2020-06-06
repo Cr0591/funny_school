@@ -8,15 +8,8 @@ import edu.gpnu.service.IUserService;
 import edu.gpnu.util.JwtUtil;
 import edu.gpnu.util.RedisUtil;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.IncorrectCredentialsException;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -48,7 +41,7 @@ public class LoginController {
 
         Result<JSONObject> result = new Result<>();
 
-        userInfo(user,result);
+        userInfo(queryUser,result);
 
         return result;
     }
@@ -63,6 +56,7 @@ public class LoginController {
      */
     private Result<JSONObject> userInfo(User user, Result<JSONObject> result) {
         String syspassword = user.getPassword();
+        user.setPassword(null);
         String studentId = user.getStudentId();
 
         // 生成token
@@ -82,14 +76,9 @@ public class LoginController {
 
 
     @PostMapping("/register")
-    public Result register(User user){
+    public Result register(@RequestBody User user){
         int effectedNum = userService.saveUser(user);
         if (effectedNum > 0){
-            String studentId = user.getStudentId();
-            String password = user.getPassword();
-            UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(studentId, password, false);
-            Subject subject = SecurityUtils.getSubject();
-            subject.login(usernamePasswordToken);
             return Result.ok("注册成功");
         }else {
             return Result.error("注册失败，请重新尝试");

@@ -11,9 +11,9 @@
 
     <insert id="insert" parameterType="edu.gpnu.entity.User">
         insert into
-        user(username,password,clase,student_id,sex,school,campus)
+        user(username,password,clase,student_id,gender,school,campus)
         values
-        (#{username},#{password},#{clase},#{studentId},#{sex},#{school},#{campus})
+        (#{username},#{password},#{clase},#{studentId},#{gender},#{school},#{campus})
     </insert>
 
     <update id="update" >

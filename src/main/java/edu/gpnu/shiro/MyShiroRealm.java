@@ -102,8 +102,12 @@ public class MyShiroRealm extends AuthorizingRealm {
             throw new RuntimeException("redis连接异常");
         }
         String cacheToken = String.valueOf(redisUtil.get(CommonConstant.PREFIX_USER_TOKEN + token));
-        if (!StringUtils.isEmpty(cacheToken)) {
+        //String.valueOf   会让原来是 null的字符串变成 "null"
+
+        if (cacheToken != null && !"".equals(cacheToken) && !"null".equals(cacheToken)) {
             // 校验token有效性
+            System.out.println("校验token有效性");
+            System.out.println(!JwtUtil.verify(cacheToken, studentId, password));
             if (!JwtUtil.verify(cacheToken, studentId, password)) {
                 String newAuthorization = JwtUtil.sign(studentId, password);
                 // 设置超时时间
