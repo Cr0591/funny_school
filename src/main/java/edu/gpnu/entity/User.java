@@ -38,6 +38,8 @@ public class User implements Serializable {
      */
     private String campus;
 
+    private String avatar;
+
     public String getUsername() {
         return username;
     }
@@ -92,6 +94,14 @@ public class User implements Serializable {
 
     public void setCampus(String campus) {
         this.campus = campus;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     @Override

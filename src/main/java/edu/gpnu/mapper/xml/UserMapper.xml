@@ -29,8 +29,8 @@
             <if test="clase != null and clase != ''">
                 clase = #{clase},
             </if>
-            <if test="sex != null and sex != ''">
-                sex = #{sex},
+            <if test="gender != null and gender != ''">
+                gender = #{gender},
             </if>
             <if test="school != null and school != ''">
                 school = #{school},
