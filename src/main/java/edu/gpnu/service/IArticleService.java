@@ -9,5 +9,7 @@ public interface IArticleService {
 
     List<ArticleVO> queryArticleVOs(Article article);
 
+    List<ArticleVO> getFollowingArticle(String studentId);
+
     boolean add(ArticleVO articleVO);
 }

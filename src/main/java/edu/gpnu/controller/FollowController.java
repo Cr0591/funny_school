@@ -51,5 +51,14 @@ public class FollowController {
         return Result.ok(follower);
     }
 
+    @GetMapping("/cancelFollow")
+    public Result cancelFollow(String studentId){
+        User user = (User) SecurityUtils.getSubject().getPrincipal();
+        //studentId是当前用户取消对谁关注
+        Follow follow = new Follow(studentId,user.getStudentId());
+        followService.del(follow);
+        return Result.ok("取消关注成功");
+    }
+
 
 }

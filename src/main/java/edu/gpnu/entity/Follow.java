@@ -7,6 +7,9 @@ public class Follow {
      */
     private String studentId;
 
+    public Follow() {
+    }
+
     public Follow(String studentId, String follower) {
         this.studentId = studentId;
         this.follower = follower;

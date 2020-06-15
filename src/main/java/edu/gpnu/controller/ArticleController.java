@@ -2,8 +2,10 @@ package edu.gpnu.controller;
 
 import edu.gpnu.api.vo.Result;
 import edu.gpnu.entity.Article;
+import edu.gpnu.entity.User;
 import edu.gpnu.service.IArticleService;
 import edu.gpnu.vo.ArticleVO;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,5 +37,12 @@ public class ArticleController {
             e.printStackTrace();
         }
         return Result.ok("发布成功");
+    }
+
+    @GetMapping("/getFollowingArticle")
+    public Result getFollowingArticle(){
+        User user = (User) SecurityUtils.getSubject().getPrincipal();
+        List<ArticleVO> followingArticle = articleService.getFollowingArticle(user.getStudentId());
+        return Result.ok(followingArticle);
     }
 }

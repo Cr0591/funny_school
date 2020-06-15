@@ -21,6 +21,7 @@ public class UserController {
     @GetMapping("/getUserByStudentId")
     public Result getUserByStudentId(@RequestParam(value = "studentId") String studentId){
         User user = userService.getUserByStudentId(studentId);
+        user.setPassword(null);
         return Result.ok(user);
     }
 

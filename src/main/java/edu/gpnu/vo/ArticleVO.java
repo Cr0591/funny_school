@@ -2,6 +2,7 @@ package edu.gpnu.vo;
 
 import edu.gpnu.entity.Article;
 import edu.gpnu.entity.ArticlePicture;
+import edu.gpnu.entity.Comment;
 import edu.gpnu.entity.User;
 
 import java.io.Serializable;
@@ -11,6 +12,7 @@ public class ArticleVO implements Serializable {
     private Article article;
     private User user;
     private List<ArticlePicture> articlePictureList;
+    private List<Comment> commentList;
 
     public Article getArticle() {
         return article;
@@ -34,6 +36,14 @@ public class ArticleVO implements Serializable {
 
     public void setArticlePictureList(List<ArticlePicture> articlePictureList) {
         this.articlePictureList = articlePictureList;
+    }
+
+    public List<Comment> getCommentList() {
+        return commentList;
+    }
+
+    public void setCommentList(List<Comment> commentList) {
+        this.commentList = commentList;
     }
 
     @Override
