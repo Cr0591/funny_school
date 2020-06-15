@@ -34,4 +34,13 @@ public class FollowServiceImpl implements IFollowService {
     public int del(Follow follow) {
         return followMapper.delete(follow);
     }
+
+    @Override
+    public boolean checkIsFollow(String follower,String studentId){
+        Follow follow = followMapper.checkIsFollow(follower, studentId);
+        if (follow == null){
+            return false;
+        }
+        return true;
+    }
 }

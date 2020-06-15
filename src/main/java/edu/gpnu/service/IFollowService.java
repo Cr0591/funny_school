@@ -22,4 +22,6 @@ public interface IFollowService {
 
     int del(Follow follow);
 
+    boolean checkIsFollow(String follower,String studentId);
+
 }

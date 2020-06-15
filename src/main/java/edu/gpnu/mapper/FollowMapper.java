@@ -2,10 +2,12 @@ package edu.gpnu.mapper;
 
 import edu.gpnu.entity.Follow;
 import edu.gpnu.entity.User;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 public interface FollowMapper {
+    Follow checkIsFollow(@Param("follower") String follower,@Param("studentId") String studentId);
 
     /**
      * 获取关注   即当前studentId正在关注的人

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.gpnu.mapper.FollowMapper">
+    <select id="checkIsFollow" resultType="edu.gpnu.entity.Follow">
+        select * from follow where student_id = #{studentId} and follower = #{follower}
+    </select>
     
     <select id="queryFollowing" resultType="edu.gpnu.entity.User">
         select

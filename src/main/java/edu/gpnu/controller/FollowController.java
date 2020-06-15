@@ -60,5 +60,12 @@ public class FollowController {
         return Result.ok("取消关注成功");
     }
 
+    @GetMapping("/checkIsFollow")
+    public Result checkIsFollow(String studentId){
+        User user = (User) SecurityUtils.getSubject().getPrincipal();
+        String follower = user.getStudentId();
+        boolean isFollow = followService.checkIsFollow(follower, studentId);
+        return Result.ok(isFollow);
+    }
 
 }
