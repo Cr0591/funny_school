@@ -28,6 +28,17 @@ public class UserController {
     public Result edit(@RequestBody User user){
         User loginUser = (User) SecurityUtils.getSubject().getPrincipal();
         user.setStudentId(loginUser.getStudentId());
+
+        if (user.getAvatar() != null && !"".equals(user.getAvatar())){
+            try {
+                String relativeAddr = ImageUtil.writeImg(File.separator + loginUser.getStudentId(), user.getAvatar());
+                user.setAvatar(relativeAddr);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+
         int effectedNum = userService.edit(user);
         if (effectedNum > 0){
             return Result.ok("编辑成功");
