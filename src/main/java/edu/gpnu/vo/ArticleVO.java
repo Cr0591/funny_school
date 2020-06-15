@@ -12,7 +12,7 @@ public class ArticleVO implements Serializable {
     private Article article;
     private User user;
     private List<ArticlePicture> articlePictureList;
-    private List<Comment> commentList;
+    private List<CommentVO> commentVOList;
 
     public Article getArticle() {
         return article;
@@ -38,12 +38,12 @@ public class ArticleVO implements Serializable {
         this.articlePictureList = articlePictureList;
     }
 
-    public List<Comment> getCommentList() {
-        return commentList;
+    public List<CommentVO> getCommentVOList() {
+        return commentVOList;
     }
 
-    public void setCommentList(List<Comment> commentList) {
-        this.commentList = commentList;
+    public void setCommentVOList(List<CommentVO> commentVOList) {
+        this.commentVOList = commentVOList;
     }
 
     @Override

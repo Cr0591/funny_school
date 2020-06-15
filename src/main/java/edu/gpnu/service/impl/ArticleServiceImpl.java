@@ -12,6 +12,7 @@ import edu.gpnu.service.IArticleService;
 import edu.gpnu.util.ImageUtil;
 import edu.gpnu.util.UUIDGenerator;
 import edu.gpnu.vo.ArticleVO;
+import edu.gpnu.vo.CommentVO;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,8 +40,8 @@ public class ArticleServiceImpl implements IArticleService {
     public List<ArticleVO> queryArticleVOs(Article article) {
         List<ArticleVO> articleVOS = articleMapper.queryArticleVOs(article);
         for (ArticleVO articleVO : articleVOS) {
-            List<Comment> comments = commentMapper.queryByArticleId(articleVO.getArticle().getId());
-            articleVO.setCommentList(comments);
+            List<CommentVO> comments = commentMapper.queryCommentVOByArticleId(articleVO.getArticle().getId());
+            articleVO.setCommentVOList(comments);
         }
         return articleVOS;
     }
@@ -65,8 +66,8 @@ public class ArticleServiceImpl implements IArticleService {
 
         });
         for (ArticleVO articleVO : result) {
-            List<Comment> comments = commentMapper.queryByArticleId(articleVO.getArticle().getId());
-            articleVO.setCommentList(comments);
+            List<CommentVO> comments = commentMapper.queryCommentVOByArticleId(articleVO.getArticle().getId());
+            articleVO.setCommentVOList(comments);
         }
         return result;
     }
