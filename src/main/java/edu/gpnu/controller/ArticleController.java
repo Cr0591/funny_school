@@ -1,6 +1,7 @@
 package edu.gpnu.controller;
 
 import edu.gpnu.api.vo.Result;
+import edu.gpnu.entity.Article;
 import edu.gpnu.service.IArticleService;
 import edu.gpnu.vo.ArticleVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +16,9 @@ public class ArticleController {
     private IArticleService articleService;
 
     @GetMapping("/list")
-    public Result list(){
+    public Result list(Article article){
         System.out.println("/article/list执行");
-        List<ArticleVO> articleVOS = articleService.queryArticleVOs();
+        List<ArticleVO> articleVOS = articleService.queryArticleVOs(article);
         return Result.ok(articleVOS);
     }
 

@@ -27,8 +27,8 @@ public class ArticleServiceImpl implements IArticleService {
     private ArticlePictureMapper articlePictureMapper;
 
     @Override
-    public List<ArticleVO> queryArticleVOs() {
-        return articleMapper.queryArticleVOs();
+    public List<ArticleVO> queryArticleVOs(Article article) {
+        return articleMapper.queryArticleVOs(article);
     }
 
     @Override

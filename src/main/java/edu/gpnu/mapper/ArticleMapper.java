@@ -8,5 +8,5 @@ import java.util.List;
 public interface ArticleMapper {
     int insert(Article article);
 
-    List<ArticleVO> queryArticleVOs();
+    List<ArticleVO> queryArticleVOs(Article article);
 }
